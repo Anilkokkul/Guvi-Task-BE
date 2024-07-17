@@ -5,10 +5,12 @@ require("dotenv").config();
 const app = express();
 const { db } = require("./db/connect");
 db();
-
+const corsOptions = {
+  origin: ["http://localhost:3000"],
+};
 app.use(express.json());
 app.use(authRoutes);
-app.use(cors());
+app.use(cors(corsOptions));
 const port = process.env.PORT || 8000;
 
 app.get("/", (req, res) => {
