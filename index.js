@@ -7,10 +7,11 @@ const { db } = require("./db/connect");
 db();
 const corsOptions = {
   origin: ["http://localhost:3000"],
+  credentials: true,
 };
 app.use(express.json());
-app.use(authRoutes);
 app.use(cors(corsOptions));
+app.use(authRoutes);
 const port = process.env.PORT || 8000;
 
 app.get("/", (req, res) => {
